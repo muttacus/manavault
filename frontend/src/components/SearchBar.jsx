@@ -7,20 +7,14 @@ function SearchBar() {
   const [cards, setCards] = useState([]);
 
   async function handleSearch() {
-    try {
-      alert(`Searching for: ${search}`);
-
-      const results = await searchCards(search);
-
-      console.log(results);
-      alert(`Found ${results.length} cards`);
-
-      setCards(results);
-    } catch (error) {
-      console.error(error);
-      alert("Search failed. Check the console.");
-    }
+  try {
+    const results = await searchCards(search);
+    setCards(results);
+  } catch (error) {
+    console.error(error);
+    alert("No cards found.");
   }
+}
 
   return (
     <>
