@@ -1,5 +1,6 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   return (
@@ -14,13 +15,7 @@ function App() {
           in stock.
         </p>
 
-        <div className="searchBox">
-          <input
-            placeholder="Search cards, effects, abilities..."
-          />
-
-          <button>Search</button>
-        </div>
+        <SearchBar />
       </section>
     </div>
   );
