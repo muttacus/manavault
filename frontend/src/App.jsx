@@ -1,22 +1,27 @@
+import "./App.css";
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
-    <div
-      style={{
-        backgroundColor: "#111827",
-        color: "white",
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        fontFamily: "Arial",
-      }}
-    >
-      <h1>ManaVault</h1>
+    <div className="app">
+      <Navbar />
 
-      <h2>Inventory & Advanced Search for Magic: The Gathering</h2>
+      <section className="hero">
+        <h2>The MTG Search Engine for Local Game Stores</h2>
 
-      <p>Welcome to Version 0.1 🚀</p>
+        <p>
+          Search every Magic card and instantly see which local stores have it
+          in stock.
+        </p>
+
+        <div className="searchBox">
+          <input
+            placeholder="Search cards, effects, abilities..."
+          />
+
+          <button>Search</button>
+        </div>
+      </section>
     </div>
   );
 }
