@@ -1,42 +1,34 @@
 import { useState } from "react";
-import { searchCards } from "../services/scryfall";
-import CardResult from "./CardResult";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
   const [search, setSearch] = useState("");
-  const [cards, setCards] = useState([]);
+  const navigate = useNavigate();
 
-  async function handleSearch() {
-  try {
-    const results = await searchCards(search);
-    setCards(results);
-  } catch (error) {
-    console.error(error);
-    alert("No cards found.");
+  function handleSearch() {
+    const trimmedSearch = search.trim();
+
+    if (!trimmedSearch) {
+      alert("Please enter a card name.");
+      return;
+    }
+
+    navigate(`/search?query=${encodeURIComponent(trimmedSearch)}`);
   }
-}
 
   return (
-    <>
-      <div className="searchBox">
-        <input
-          type="text"
-          placeholder="Search cards..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+    <div className="searchBox">
+      <input
+        type="text"
+        placeholder="Search cards..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
-        <button type="button" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
-
-      <div style={{ maxWidth: "900px", margin: "50px auto" }}>
-        {cards.map((card) => (
-          <CardResult key={card.id} card={card} />
-        ))}
-      </div>
-    </>
+      <button type="button" onClick={handleSearch}>
+        Search
+      </button>
+    </div>
   );
 }
 

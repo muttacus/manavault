@@ -1,27 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { searchCards } from "../services/scryfall";
+import CardResult from "../components/CardResult";
 
-function SearchBar() {
-  const [search, setSearch] = useState("");
+function SearchResults() {
+  const [searchParams] = useSearchParams();
+  const [cards, setCards] = useState([]);
 
-  async function handleSearch() {
-    const cards = await searchCards(search);
-    console.log(cards);
-    alert(`Found ${cards.length} cards. Check the browser console.`);
-  }
+  const query = searchParams.get("query");
+
+  useEffect(() => {
+    async function loadCards() {
+      if (!query) return;
+
+      try {
+        const results = await searchCards(query);
+        setCards(results);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadCards();
+  }, [query]);
 
   return (
-    <div className="searchBox">
-      <input
-        type="text"
-        placeholder="Search cards..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+    <div style={{ maxWidth: "900px", margin: "40px auto" }}>
+      <h1>Results for "{query}"</h1>
 
-      <button onClick={handleSearch}>Search</button>
+      {cards.length === 0 ? (
+        <p>No cards found.</p>
+      ) : (
+        cards.map((card) => (
+          <CardResult key={card.id} card={card} />
+        ))
+      )}
     </div>
   );
 }
 
-export default SearchBar;
+export default SearchResults;
