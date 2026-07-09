@@ -24,13 +24,29 @@ function CardDetails() {
     card.image_uris?.normal || card.card_faces?.[0]?.image_uris?.normal;
 
   return (
-    <div style={{ maxWidth: "900px", margin: "40px auto" }}>
-      <h1>{card.name}</h1>
+    <div className="cardDetails">
+      <img src={imageUrl} alt={card.name} />
 
-      <img src={imageUrl} alt={card.name} style={{ width: "320px" }} />
+      <div>
+        <h1>{card.name}</h1>
+        <h2>{card.type_line}</h2>
 
-      <h2>{card.type_line}</h2>
-      <p>{card.oracle_text}</p>
+        <p>{card.oracle_text}</p>
+
+        <h3>Card Info</h3>
+        <p>Set: {card.set_name}</p>
+        <p>Rarity: {card.rarity}</p>
+        <p>Mana Value: {card.cmc}</p>
+
+        <h3>Prices</h3>
+        <p>USD: ${card.prices?.usd || "N/A"}</p>
+        <p>Foil: ${card.prices?.usd_foil || "N/A"}</p>
+
+        <h3>Legality</h3>
+        <p>Commander: {card.legalities?.commander}</p>
+        <p>Modern: {card.legalities?.modern}</p>
+        <p>Standard: {card.legalities?.standard}</p>
+      </div>
     </div>
   );
 }

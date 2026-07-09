@@ -92,3 +92,23 @@ button:hover {
   margin: 8px 0;
   color: #cbd5e1;
 }
+.cardDetails {
+  display: flex;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 24px;
+  background: #1f2937;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.cardDetails img {
+  width: 320px;
+  border-radius: 16px;
+}
+
+.cardDetails p {
+  color: #cbd5e1;
+  line-height: 1.5;
+}
