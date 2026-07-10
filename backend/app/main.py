@@ -5,8 +5,20 @@ from app.api.sync import router as sync_router
 from app.api.stores import router as stores_router
 from app.connectors.scryfall import search_card
 from app.api.inventory import router as inventory_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 init_db()
 

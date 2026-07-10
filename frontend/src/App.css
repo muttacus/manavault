@@ -112,3 +112,87 @@ button:hover {
   color: #cbd5e1;
   line-height: 1.5;
 }
+.storeDashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.dashboardHeader h1 {
+  margin: 8px 0;
+  font-size: 40px;
+}
+
+.eyebrow {
+  color: #60a5fa;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dashboardStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.statCard,
+.dashboardPanel {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.statCard span {
+  display: block;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+
+.statCard strong {
+  font-size: 28px;
+}
+
+.dashboardPanel {
+  margin-bottom: 24px;
+}
+
+.dashboardPanel h2 {
+  margin-bottom: 18px;
+}
+
+.platformRow,
+.inventoryRow {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid #374151;
+}
+
+.connected {
+  color: #86efac;
+  font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  .dashboardHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboardStats {
+    grid-template-columns: 1fr;
+  }
+}
