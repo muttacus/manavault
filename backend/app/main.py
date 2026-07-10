@@ -1,11 +1,14 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.database.init_db import init_db
-from app.api.sync import router as sync_router
+
 from app.api.stores import router as stores_router
-from app.connectors.scryfall import search_card
 from app.api.inventory import router as inventory_router
-from fastapi.middleware.cors import CORSMiddleware
+from app.api.sync import router as sync_router
+from app.api.imports import router as imports_router
+
+from app.connectors.scryfall import search_card
 
 app = FastAPI()
 
@@ -25,6 +28,7 @@ init_db()
 app.include_router(stores_router, prefix="/api")
 app.include_router(inventory_router, prefix="/api")
 app.include_router(sync_router, prefix="/api")
+app.include_router(imports_router, prefix="/api")
 
 
 @app.get("/")
